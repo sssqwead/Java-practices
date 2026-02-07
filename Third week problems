@@ -1,0 +1,41 @@
+package com.epam.rd.autotasks;
+
+public class DecrementingCarousel {
+
+    private final int[] data;
+    private int size = 0;
+    private boolean hasRun = false;
+
+    public DecrementingCarousel(int capacity) {
+        this.data = new int[capacity];
+    }
+
+    public boolean addElement(int element) {
+        
+        if (hasRun) return false;
+
+        
+        if (element <= 0) return false;
+
+        
+        if (size == data.length) return false;
+
+        
+        data[size] = element;
+        size++;
+        return true;
+    }
+
+    public CarouselRun run() {
+        
+        if (hasRun) return null;
+        hasRun = true;
+
+        
+        int[] copy = new int[size];
+        System.arraycopy(data, 0, copy, 0, size);
+
+        return new CarouselRun(copy);
+    }
+}
+
